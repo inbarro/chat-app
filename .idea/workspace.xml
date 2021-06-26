@@ -51,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state relative-caret-position="324">
+              <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -98,8 +98,8 @@
       <find>sendMassage</find>
       <find>this.name</find>
       <find>messagesList</find>
-      <find>send-chat-message</find>
       <find>require('express</find>
+      <find>send-chat-message</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -235,12 +235,12 @@
       <workItem from="1624466464363" duration="44000" />
       <workItem from="1624466535185" duration="39450000" />
       <workItem from="1624619634511" duration="3697000" />
-      <workItem from="1624628104149" duration="39643000" />
+      <workItem from="1624628104149" duration="40560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82834000" />
+    <option name="totallyTimeSpent" value="83751000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -524,8 +524,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state relative-caret-position="324">
+          <caret line="18" column="63" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
         </state>
       </provider>
     </entry>
