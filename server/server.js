@@ -12,16 +12,19 @@ io.on('connection', socket => {
       type: 'mytype',
       id: socket.id,
       body: {'name' : name}
-    },function (err, resp, status) {
-      if (err) {
-        console.log(err);
-      } else {
-        return res.statys(200).send({
-          message: 'user call succeeded'
-        })
-      }
-      })
+    })
   });
+
+  //old
+// ,function (err, res, status) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       return res.status(200).send({
+//         message: 'user call succeeded'
+//       })
+//     }
+//   }
 
   socket.on('send-chat-message', message => {
     socket.broadcast.emit('chat-message', { text: message, userName: users[socket.id]})
