@@ -37,13 +37,12 @@ io.on('connection', socket => {
   });
 
   socket.on('new-question', object => {
-    console.log(object)
     Client.index({
       index: 'questions',
       type: "mytype",
       body: object
     });
-    // socket.broadcast.emit('chat-message', { text: message, userName: users[socket.id]})
+    socket.broadcast.emit('new_question-posted', object);
   });
 
   socket.on('disconnect', () => {

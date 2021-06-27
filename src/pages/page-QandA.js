@@ -14,8 +14,8 @@ class PageQandA extends PageElement {
 
   constructor(){
     super();
-    this.question = "ma tarotze?";
-    this.answers = [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"} ];
+    // this.question = "ma tarotze?";
+    // this.answers = [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"} ];
   }
 
   render(){

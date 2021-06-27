@@ -18,17 +18,14 @@ const VisibilityFilters = {
 
 class PageChat extends PageElement {
 
-  //TODO: 1. Write who wrote the message
-  // 2. change names of vars
-  // 3. In the server: Add elasticsearch
-
   // Dont know if needed
   static get properties() {
     return {
       messagesList: { type: Array },
       filter: { type: String },
       message: { type: Object },
-      name: {type: String}
+      name: {type: String},
+      qands: Array
     };
   }
 
@@ -46,13 +43,19 @@ class PageChat extends PageElement {
     this.filter = VisibilityFilters.SHOW_ALL;
     // What's inside the text box
     this.message = '';
-    this.qandas = [{question: "ma tarotze?", answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"}]}];
+    this.qands = [{question: "ma tarotze?", answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"}]}];
+
 
     socket.on('user-connected', name => {
       this.addMessageToChat({userName:`${name}`, text: ' i joined the conversation'})
     });
 
     socket.on('user-disconnected', name => {
+
+    });
+
+    socket.on('new_question-posted', object => {
+      this.addQuestionToChat({question: object.question, answers: [{user:'server' ,text: "server_ans"}]})
 
     });
 
@@ -63,38 +66,8 @@ class PageChat extends PageElement {
     });
   }
 
-  render() {
-    return html`
-  
-    
-    <div class="messages-list">
-  ${this.messagesList.map(
-      message => html`
-          <div class="todo-item">
-            <vaadin-text-field  value="${message.userName + ": " + message.text}">
-              </vaadin-text-field>
-          </div>
-        `
-    )
-      }
-  </div>
-  ${this.qandas.map(answer => html`<page-qanda class='page-qanda' .user=${answer.user} .text=${answer.text}> </page-qanda>`)}
-  
-  <div class="input-layout"
-  @keyup="${this.shortcutListener}">
-      <vaadin-text-field
-    placeholder="Message"
-    value="${this.message}"
-  @change="${this.updateTask}">
-      </vaadin-text-field>
-      <vaadin-button
-    theme="primary"
-  @click="${this.askNewQuestion}">
-      Ask question
-    </vaadin-button>
-    </div>
-`
-  }
+
+
 
   addMessageToChat(newMessage) {
     this.messagesList = [...this.messagesList, {
@@ -117,6 +90,44 @@ class PageChat extends PageElement {
 
   updateTask(e) {
     this.message = e.target.value;
+  }
+
+  addQuestionToChat(obj) {
+    // console.log(this.qands);
+    this.qands = [...this.qands, obj];
+    // console.log(this.qands);
+  }
+
+  render() {
+    return html`
+  
+    
+    <div class="messages-list">
+  ${this.messagesList.map(
+      message => html`
+          <div class="todo-item">
+            <vaadin-text-field  value="${message.userName + ": " + message.text}">
+              </vaadin-text-field>
+          </div>
+        `
+    )
+      }
+  </div>
+  ${this.qands.map(qanda => html`<page-qanda .question=${qanda.question} .answers=${qanda.answers }> </page-qanda>`)}
+  <div class="input-layout"
+  @keyup="${this.shortcutListener}">
+      <vaadin-text-field
+    placeholder="Message"
+    value="${this.message}"
+  @change="${this.updateTask}">
+      </vaadin-text-field>
+      <vaadin-button
+    theme="primary"
+  @click="${this.askNewQuestion}">
+      Ask question
+    </vaadin-button>
+    </div>
+`
   }
 
 }
