@@ -10,20 +10,12 @@ import './page-QandA'
 
 const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
-const VisibilityFilters = {
-  SHOW_ALL: 'All',
-  SHOW_ACTIVE: 'Active',
-  SHOW_COMPLETED: 'Completed'
-};
-
 class PageChat extends PageElement {
 
   // Dont know if needed
   static get properties() {
     return {
-      messagesList: { type: Array },
-      filter: { type: String },
-      message: { type: Object },
+      curr_question: { type: Object },
       name: {type: String},
       qands: Array
     };
@@ -38,16 +30,12 @@ class PageChat extends PageElement {
     // Socket emit - send event to the other side of the socket
     socket.emit('new-user', this.name);
 
-    // messages list
-    this.messagesList = [{text: "Welcome "+this.name+"!", complete: false}];
-    this.filter = VisibilityFilters.SHOW_ALL;
     // What's inside the text box
-    this.message = '';
+    this.curr_question = '';
     this.qands = [{question: "ma tarotze?", answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"}]}];
 
 
     socket.on('user-connected', name => {
-      this.addMessageToChat({userName:`${name}`, text: ' i joined the conversation'})
     });
 
     socket.on('user-disconnected', name => {
@@ -56,30 +44,12 @@ class PageChat extends PageElement {
 
     socket.on('new_question-posted', object => {
       this.addQuestionToChat({question: object.question, answers: [{user:'server' ,text: "server_ans"}]})
-
     });
-
-    // Socket on - get event from the other side of the socket
-    socket.on('chat-message', data => {
-      // TODO: Add which users wrote the message
-      this.addMessageToChat({userName: data.userName, text:data.text})
-    });
-  }
-
-
-
-
-  addMessageToChat(newMessage) {
-    this.messagesList = [...this.messagesList, {
-      userName: newMessage.userName,
-      text: newMessage.text,
-      complete: false
-    }];
   }
 
   askNewQuestion() {
-    socket.emit("new-question", {question: this.message, user: this.name});
-    this.addQuestionToChat({question: this.message, answers: [{user:'server' ,text: "server_ans"}]})
+    socket.emit("new-question", {question: this.curr_question, user: this.name});
+    this.addQuestionToChat({question: this.curr_question, answers: [{user:'server' ,text: "server_ans"}]})
   }
 
   shortcutListener(e) {
@@ -89,36 +59,21 @@ class PageChat extends PageElement {
   }
 
   updateTask(e) {
-    this.message = e.target.value;
+    this.curr_question = e.target.value;
   }
 
   addQuestionToChat(obj) {
-    // console.log(this.qands);
     this.qands = [...this.qands, obj];
-    // console.log(this.qands);
   }
 
   render() {
     return html`
-  
-    
-    <div class="messages-list">
-  ${this.messagesList.map(
-      message => html`
-          <div class="todo-item">
-            <vaadin-text-field  value="${message.userName + ": " + message.text}">
-              </vaadin-text-field>
-          </div>
-        `
-    )
-      }
-  </div>
   ${this.qands.map(qanda => html`<page-qanda .question=${qanda.question} .answers=${qanda.answers }> </page-qanda>`)}
   <div class="input-layout"
   @keyup="${this.shortcutListener}">
       <vaadin-text-field
     placeholder="Message"
-    value="${this.message}"
+    value="${this.curr_question}"
   @change="${this.updateTask}">
       </vaadin-text-field>
       <vaadin-button
@@ -132,24 +87,7 @@ class PageChat extends PageElement {
 
 }
 
-// logic
 customElements.define('page-chat', PageChat);
-
-// messageForm.addEventListener('submit', e => {
-//   e.preventDefault()
-//   const message = messageInput.value
-//   appendMessage(`You: ${message}`)
-//   socket.emit('send-chat-message', message)
-//   messageInput.value = ''
-// })
-
-function appendMessage(newMessage) {
-  PageChat.messagesList = [...PageChat.messagesList, {
-    userName: newMessage.userName,
-    text: newMessage.text,
-    complete: false
-  }];
-}
 
 
 

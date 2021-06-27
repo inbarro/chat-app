@@ -32,9 +32,6 @@ io.on('connection', socket => {
     socket.broadcast.emit('user-connected', name);
   });
 
-  socket.on('send-chat-message', message => {
-    socket.broadcast.emit('chat-message', { text: message, userName: users[socket.id]})
-  });
 
   socket.on('new-question', object => {
     Client.index({
@@ -45,21 +42,10 @@ io.on('connection', socket => {
     socket.broadcast.emit('new_question-posted', object);
   });
 
+
   socket.on('disconnect', () => {
     socket.broadcast.emit('user-disconnected', users[socket.id])
     delete users[socket.id]
   })
 });
-
-
-//old
-// ,function (err, res, status) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       return res.status(200).send({
-//         message: 'user call succeeded'
-//       })
-//     }
-//   }
 
