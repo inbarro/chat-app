@@ -117,6 +117,11 @@ h5 {
   line-height: 34px;
 }
 
+page-qanda {
+  color: blue;
+  background-color: red;
+}
+
 [hidden] {
   display: none;
 }
@@ -837,7 +842,6 @@ ul#main-menu > li:not(.type-notepad) {
     margin-bottom: 20px;
   }
 }
-
 
 
 /* @media (min-width: 1200px) { */

@@ -6,9 +6,9 @@ import './page-chat'
 
 
 export class PageHome extends PageElement {
+
   render() {
     return html` 
-        
         <page-chat class="page-chat"></page-chat>
        `;
   }

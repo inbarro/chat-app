@@ -6,6 +6,7 @@ import '@vaadin/vaadin-button';
 import '@vaadin/vaadin-checkbox';
 import '@vaadin/vaadin-radio-button/vaadin-radio-button';
 import '@vaadin/vaadin-radio-button/vaadin-radio-group';
+import './page-QandA'
 
 const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
@@ -45,6 +46,7 @@ class PageChat extends PageElement {
     this.filter = VisibilityFilters.SHOW_ALL;
     // What's inside the text box
     this.message = '';
+    this.qandas = [{question: "ma tarotze?", answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"}]}];
 
     socket.on('user-connected', name => {
       this.addMessageToChat({userName:`${name}`, text: ' i joined the conversation'})
@@ -63,6 +65,21 @@ class PageChat extends PageElement {
 
   render() {
     return html`
+  
+    
+    <div class="messages-list">
+  ${this.messagesList.map(
+      message => html`
+          <div class="todo-item">
+            <vaadin-text-field  value="${message.userName + ": " + message.text}">
+              </vaadin-text-field>
+          </div>
+        `
+    )
+      }
+  </div>
+  ${this.qandas.map(answer => html`<page-qanda class='page-qanda' .user=${answer.user} .text=${answer.text}> </page-qanda>`)}
+  
   <div class="input-layout"
   @keyup="${this.shortcutListener}">
       <vaadin-text-field
@@ -72,23 +89,10 @@ class PageChat extends PageElement {
       </vaadin-text-field>
       <vaadin-button
     theme="primary"
-  @click="${this.sendMassage}">
-      Send
+  @click="${this.askNewQuestion}">
+      Ask question
     </vaadin-button>
     </div>
-    
-    <div class="messages-list">
-  ${this.messagesList.map(
-      message => html`
-
-          <div class="todo-item">
-            <vaadin-text-field  value="${message.userName + ": " + message.text}">
-              </vaadin-text-field>
-          </div>
-        `
-    )
-      }
-  </div>
 `
   }
 
@@ -100,9 +104,9 @@ class PageChat extends PageElement {
     }];
   }
 
-  sendMassage() {
-    socket.emit("send-chat-message", this.message);
-    this.addMessageToChat({text: this.message, userName: 'me'})
+  askNewQuestion() {
+    socket.emit("new-question", {question: this.message, user: this.name});
+    // this.addMessageToChat({text: this.message, userName: 'me'})
   }
 
   shortcutListener(e) {
