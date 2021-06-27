@@ -79,7 +79,7 @@ class PageChat extends PageElement {
 
   askNewQuestion() {
     socket.emit("new-question", {question: this.message, user: this.name});
-    // this.addMessageToChat({text: this.message, userName: 'me'})
+    this.addQuestionToChat({question: this.message, answers: [{user:'server' ,text: "server_ans"}]})
   }
 
   shortcutListener(e) {
