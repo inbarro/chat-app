@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8f98934-86a4-4903-94fb-4fa9cb2521db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index-local.html" beforeDir="false" afterPath="$PROJECT_DIR$/index-local.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/page-QandA.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/page-QandA.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/page-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/page-answer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/page-chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/page-chat.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/page-chat.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="151">
+              <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="2" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -41,23 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/page-QandA.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="304">
+              <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -80,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="63" column="40" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="40" />
+            <state relative-caret-position="365">
+              <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -97,9 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PageElement</find>
-      <find>hiii</find>
-      <find>Vaad</find>
       <find>tasks</find>
       <find>connected</find>
       <find>addTodo</find>
@@ -127,6 +109,9 @@
       <find>socket</find>
       <find>PageChat</find>
       <find>new_answer</find>
+      <find>new_answer-posted</find>
+      <find>addAnswerToChat</find>
+      <find>addNewAnswer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,11 +139,11 @@
         <option value="$PROJECT_DIR$/src/pages/page-home.js" />
         <option value="$PROJECT_DIR$/index.css" />
         <option value="$PROJECT_DIR$/src/pages/page-answer.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/index-local.html" />
         <option value="$PROJECT_DIR$/src/controller.js" />
-        <option value="$PROJECT_DIR$/src/pages/page-QandA.js" />
         <option value="$PROJECT_DIR$/src/pages/page-chat.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/src/pages/page-QandA.js" />
       </list>
     </option>
   </component>
@@ -275,12 +260,12 @@
       <workItem from="1624619634511" duration="3697000" />
       <workItem from="1624628104149" duration="53415000" />
       <workItem from="1624811524437" duration="30395000" />
-      <workItem from="1624888429904" duration="13600000" />
+      <workItem from="1624888429904" duration="18996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140601000" />
+    <option name="totallyTimeSpent" value="145997000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -579,16 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/page-answer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -599,10 +574,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/page-QandA.js">
+    <entry file="file://$PROJECT_DIR$/src/pages/page-answer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/page-chat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="65" column="2" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="2" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -611,15 +596,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="40" />
+        <state relative-caret-position="365">
+          <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/page-chat.js">
+    <entry file="file://$PROJECT_DIR$/src/pages/page-QandA.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="304">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>

@@ -41,7 +41,7 @@ io.on('connection', socket => {
       body: object
     }, function (err, resp, status){
       if (!err) {
-        object.question_id = resp._id
+        object.question_id = resp._id;
         socket.broadcast.emit('new_question-posted', object);
         socket.emit('new_question-posted', object);
       }
@@ -59,10 +59,9 @@ io.on('connection', socket => {
       body: answer
     }, function (err, resp, status) {
         if (!err) {
-          answer.id = resp._id
+          answer.id = resp._id;
           socket.broadcast.emit('new_answer-posted', answer);
           socket.emit('new_answer-posted', answer);
-          console.log("New answer")
         }
       if (err)
       {

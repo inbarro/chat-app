@@ -35,7 +35,9 @@ class PageQandA extends PageElement {
   }
 
   addNewAnswer(){
+    this.curr_answer = document.getElementById("answer").value;
       socket.emit("new-answer", {question_id: this.question.question_id, answer_text: this.curr_answer, answer_user: this.answer_user});
+
   }
 
   // askNewQuestion() {
@@ -48,10 +50,9 @@ class PageQandA extends PageElement {
     <page-question .question=${this.question.question}></page-question>
     ${this.answers.map(answer => html `<page-answer .answer_user=${answer.answer_user} .answer_text=${answer.answer_text}></page-answer>`)}
      <div class="input-layout">
-      <vaadin-text-field
+      <vaadin-text-field id="answer"
     placeholder="answer..."
-    value="${this.curr_answer}"
-  @change="${this.updateCurrAnswer}">
+    value="${this.curr_answer}">
       </vaadin-text-field>
       <vaadin-button
     theme="secondary"

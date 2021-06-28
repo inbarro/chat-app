@@ -55,7 +55,6 @@ const socket = io('http://localhost:3000', { transports: ['websocket', 'polling'
 
   askNewQuestion() {
     socket.emit("new-question", {question: this.curr_question, user: this.name});
-    // this.addQuestionToChat({question: this.curr_question, answers: [{user:'server' ,text: "server_ans"}]})
   }
 
   shortcutListener(e) {
@@ -78,6 +77,7 @@ const socket = io('http://localhost:3000', { transports: ['websocket', 'polling'
     {
       if (obj.question_id == this.qands[key].question.question_id)
       {
+        // this.qands[key].answers = [...this.qands[key].answers,{answer_user: obj.answer_user, answer_text: obj.answer_text}];
         this.qands[key].answers.push({answer_user: obj.answer_user, answer_text: obj.answer_text});
       }
     }
