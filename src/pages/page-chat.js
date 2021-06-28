@@ -42,8 +42,13 @@ class PageChat extends PageElement {
 
     });
 
+
+    socket.on('new_answer-posted', object =>{
+      this.addAnswerToChat(object);
+    });
+
     socket.on('new_question-posted', object => {
-      this.addQuestionToChat({question: object.question, answers: [{}]})
+      this.addQuestionToChat({question: object, answers: [{}]});
     });
   }
 
@@ -66,13 +71,24 @@ class PageChat extends PageElement {
     this.qands = [...this.qands, obj];
   }
 
+  addAnswerToChat(obj)
+  {
+    const x = 1;
+    for (let key in this.qands)
+    {
+      // this.quands[key]
+      const y = 1;
+    }
+
+  }
+
   render() {
     return html`
-  ${this.qands.map(qanda => html`<page-qanda .question=${qanda.question} .answers=${qanda.answers }> </page-qanda>`)}
+  ${this.qands.map(qanda => html`<page-qanda .question=${qanda.question} .answers=${qanda.answers} .socket=${socket} .answer_user=${this.name}> </page-qanda>`)}
   <div class="input-layout"
   @keyup="${this.shortcutListener}">
       <vaadin-text-field
-    placeholder="Message"
+    placeholder="Question"
     value="${this.curr_question}"
   @change="${this.updateTask}">
       </vaadin-text-field>

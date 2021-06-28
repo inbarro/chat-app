@@ -3,7 +3,7 @@ import { PageElement } from '../helpers/page-element';
 import './page-question'
 import './page-answer'
 
-const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
+// const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
 class PageQandA extends PageElement {
 
@@ -11,13 +11,16 @@ class PageQandA extends PageElement {
     return {
       question: Object,
       answers: Array,
-      curr_answer: String
+      curr_answer: String,
+      socket: Object,
+      answer_user: String
     }
   }
 
   constructor(){
     super();
     this.curr_answer = '';
+    // this.socket = socket
 
   }
 
@@ -31,8 +34,7 @@ class PageQandA extends PageElement {
   }
 
   addNewAnswer(){
-      socket.emit("new-answer", {question: this.question, answer: this.curr_answer, user: this.name});
-
+      this.socket.emit("new-answer", {question_id: this.question.question_id, answer_text: this.curr_answer, user: this.answer_user});
   }
 
   // askNewQuestion() {
@@ -42,8 +44,8 @@ class PageQandA extends PageElement {
 
   render(){
     return html `
-    <page-question .question=${this.question}></page-question>
-    ${this.answers.map(answer => html `<page-answer .user=${answer.user} .text=${answer.text}></page-answer>`)}
+    <page-question .question=${this.question.question}></page-question>
+    ${this.answers.map(answer => html `<page-answer .answer_user=${answer.answer_user} .text=${answer.text}></page-answer>`)}
      <div class="input-layout"
   @keyup="${this.shortcutListener}">
       <vaadin-text-field

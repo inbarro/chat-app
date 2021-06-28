@@ -18,6 +18,7 @@ const Client = new elasticsearch.Client({ host: 'localhost:9200' });
 //         5) Make the robot show use results from google
 //         6) Prompt when entering the chat: The robot speaks and he says welcome or something like that
 //         7) Add some animation and other impressive UI things
+//         8) change panda array in page-chat to be an object so the search for a question will be smarter
 
 
 io.on('connection', socket => {
@@ -36,24 +37,34 @@ io.on('connection', socket => {
   socket.on('new-question', object => {
     Client.index({
       index: 'questions',
-      type: "mytype",
+      type: "_doc",
       body: object
     }, function (err, resp, status){
       if (!err) {
-        object.id = resp._id
+        object.question_id = resp._id
         socket.broadcast.emit('new_question-posted', object);
         socket.emit('new_question-posted', object);
+      }
+      if (err)
+      {
+        console.log(err);
       }
     });
   });
 
-  socket.on('new-answer', object => {
+  socket.on('new-answer', answer => {
     Client.index({
-      index: 'answer',
-      type: "mytype",
-      body: object
-    });
-    socket.broadcast.emit('new_answer-posted', object);
+      index: 'answers',
+      type: "_doc",
+      body: answer
+    }, function (err, resp, status) {
+        if (!err) {
+          answer.id = resp._id
+          socket.broadcast.emit('new_answer-posted', answer);
+          socket.emit('new_answer-posted', answer);
+        }
+      }
+    );
   });
 
 
