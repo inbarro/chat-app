@@ -2,8 +2,9 @@ import { html } from 'lit';
 import { PageElement } from '../helpers/page-element';
 import './page-question'
 import './page-answer'
+const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
-// const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
+
 
 class PageQandA extends PageElement {
 
@@ -29,12 +30,12 @@ class PageQandA extends PageElement {
       // this.askNewQuestion();
     }
   }
-  apdateCurrAnswer(e) {
+  updateCurrAnswer(e) {
     this.curr_answer = e.target.value;
   }
 
   addNewAnswer(){
-      this.socket.emit("new-answer", {question_id: this.question.question_id, answer_text: this.curr_answer, user: this.answer_user});
+      socket.emit("new-answer", {question_id: this.question.question_id, answer_text: this.curr_answer, answer_user: this.answer_user});
   }
 
   // askNewQuestion() {
@@ -45,13 +46,12 @@ class PageQandA extends PageElement {
   render(){
     return html `
     <page-question .question=${this.question.question}></page-question>
-    ${this.answers.map(answer => html `<page-answer .answer_user=${answer.answer_user} .text=${answer.text}></page-answer>`)}
-     <div class="input-layout"
-  @keyup="${this.shortcutListener}">
+    ${this.answers.map(answer => html `<page-answer .answer_user=${answer.answer_user} .answer_text=${answer.answer_text}></page-answer>`)}
+     <div class="input-layout">
       <vaadin-text-field
     placeholder="answer..."
     value="${this.curr_answer}"
-  @change="${this.apdateCurrAnswer}">
+  @change="${this.updateCurrAnswer}">
       </vaadin-text-field>
       <vaadin-button
     theme="secondary"

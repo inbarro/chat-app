@@ -62,7 +62,12 @@ io.on('connection', socket => {
           answer.id = resp._id
           socket.broadcast.emit('new_answer-posted', answer);
           socket.emit('new_answer-posted', answer);
+          console.log("New answer")
         }
+      if (err)
+      {
+        console.log(err);
+      }
       }
     );
   });

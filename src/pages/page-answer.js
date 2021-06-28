@@ -5,13 +5,13 @@ class PageAnswer extends PageElement {
   static get properties() {
     return {
       answer_user: String,
-      text: String
+      answer_text: String
     }
   }
 
   render(){
     return html`
-   <h1 color="blue">${this.answer_user}: ${this.text}</h1>`
+   <h1 color="blue">${this.answer_user}: ${this.answer_text}</h1>`
   }
 }
 

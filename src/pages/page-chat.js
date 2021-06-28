@@ -10,7 +10,7 @@ import './page-QandA'
 
 const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
 
-class PageChat extends PageElement {
+ class PageChat extends PageElement {
 
   // Dont know if needed
   static get properties() {
@@ -23,6 +23,8 @@ class PageChat extends PageElement {
 
   constructor() {
     super();
+    // const socket = io('http://localhost:3000', { transports: ['websocket', 'polling', 'flashsocket'] });
+
     // Takes the names from the alert
     this.name = prompt('What is your name?');
 
@@ -42,13 +44,12 @@ class PageChat extends PageElement {
 
     });
 
-
     socket.on('new_answer-posted', object =>{
       this.addAnswerToChat(object);
     });
 
     socket.on('new_question-posted', object => {
-      this.addQuestionToChat({question: object, answers: [{}]});
+      this.addQuestionToChat({question: object, answers: []});
     });
   }
 
@@ -73,20 +74,19 @@ class PageChat extends PageElement {
 
   addAnswerToChat(obj)
   {
-    const x = 1;
     for (let key in this.qands)
     {
-      // this.quands[key]
-      const y = 1;
+      if (obj.question_id == this.qands[key].question.question_id)
+      {
+        this.qands[key].answers.push({answer_user: obj.answer_user, answer_text: obj.answer_text});
+      }
     }
-
   }
 
   render() {
     return html`
-  ${this.qands.map(qanda => html`<page-qanda .question=${qanda.question} .answers=${qanda.answers} .socket=${socket} .answer_user=${this.name}> </page-qanda>`)}
-  <div class="input-layout"
-  @keyup="${this.shortcutListener}">
+  ${this.qands.map(qanda => html`<page-qanda .answer_user=${this.name} .question=${qanda.question} .answers=${qanda.answers}> </page-qanda>`)}
+  <div class="input-layout">
       <vaadin-text-field
     placeholder="Question"
     value="${this.curr_question}"
