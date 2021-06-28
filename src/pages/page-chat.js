@@ -32,8 +32,8 @@ class PageChat extends PageElement {
 
     // What's inside the text box
     this.curr_question = '';
-    this.qands = [{question: "ma tarotze?", answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"},{user:'ruti3' ,text: "ahiiii?"}]}];
-
+    // this.qands = [{question: {{id: "dsdsds", text:"ma tarotze?"}, answers: [{user:'ruti' ,text: "al titarev"},{user:'ruti2' ,text: "ahi?"}]}];
+    this.qands = [];
 
     socket.on('user-connected', name => {
     });
@@ -43,18 +43,18 @@ class PageChat extends PageElement {
     });
 
     socket.on('new_question-posted', object => {
-      this.addQuestionToChat({question: object.question, answers: [{user:'server' ,text: "server_ans"}]})
+      this.addQuestionToChat({question: object.question, answers: [{}]})
     });
   }
 
   askNewQuestion() {
     socket.emit("new-question", {question: this.curr_question, user: this.name});
-    this.addQuestionToChat({question: this.curr_question, answers: [{user:'server' ,text: "server_ans"}]})
+    // this.addQuestionToChat({question: this.curr_question, answers: [{user:'server' ,text: "server_ans"}]})
   }
 
   shortcutListener(e) {
     if (e.key === 'Enter') {
-      this.sendMassage();
+      this.askNewQuestion();
     }
   }
 

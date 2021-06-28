@@ -9,7 +9,7 @@ export class PageHome extends PageElement {
 
   render() {
     return html` 
-        <page-chat class="page-chat"></page-chat>
+        <page-chat colour = black class="page-chat"></page-chat>
        `;
   }
 }

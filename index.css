@@ -100,7 +100,7 @@ h1 {
 
 h2 {
   color: white;
-  font-size: 48px;
+  font-size: 20px;
 }
 
 h3 {
@@ -117,7 +117,7 @@ h5 {
   line-height: 34px;
 }
 
-page-qanda {
+.page-qanda {
   color: blue;
   background-color: red;
 }

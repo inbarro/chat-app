@@ -3,7 +3,7 @@ const users = {};
 const elasticsearch = require('elasticsearch');
 const Client = new elasticsearch.Client({ host: 'localhost:9200' });
 
-// TODO: 1. Convert the message to question in terms of front (not ui), back and DB
+// TODO: 1. Convert the message to question in terms of front (not ui), back and DB - DONE!
 //       2. Change the message in the UI to make it look like a question
 //       3. Add option to answer a question (add a button in the ui first) - maybe write a new tag <Q&A> </Q&A>
 //       4. Add the backend part of receiving the answer to that question
@@ -38,8 +38,22 @@ io.on('connection', socket => {
       index: 'questions',
       type: "mytype",
       body: object
+    }, function (err, resp, status){
+      if (!err) {
+        object.id = resp._id
+        socket.broadcast.emit('new_question-posted', object);
+        socket.emit('new_question-posted', object);
+      }
     });
-    socket.broadcast.emit('new_question-posted', object);
+  });
+
+  socket.on('new-answer', object => {
+    Client.index({
+      index: 'answer',
+      type: "mytype",
+      body: object
+    });
+    socket.broadcast.emit('new_answer-posted', object);
   });
 
 
