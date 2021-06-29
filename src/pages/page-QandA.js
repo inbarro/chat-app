@@ -47,7 +47,8 @@ class PageQandA extends PageElement {
 
   render(){
     return html `
-    <page-question .question=${this.question.question}></page-question>
+    <vaadin-vertical-layout class="block">
+    <page-question class="question" .question=${this.question.question}></page-question>
     ${this.answers.map(answer => html `<page-answer .answer_user=${answer.answer_user} .answer_text=${answer.answer_text}></page-answer>`)}
      <div class="input-layout">
       <vaadin-text-field id="answer"
@@ -60,9 +61,9 @@ class PageQandA extends PageElement {
         add answer
     </vaadin-button>
     </div>
+    </vaadin-vertical-layout>
 `}
 
 }
 
 customElements.define('page-qanda', PageQandA);
-
