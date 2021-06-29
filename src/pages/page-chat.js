@@ -104,6 +104,3 @@ const socket = io('http://localhost:3000', { transports: ['websocket', 'polling'
 }
 
 customElements.define('page-chat', PageChat);
-
-
-
